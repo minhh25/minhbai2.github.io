@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar styles */
+        .sidebar {
+            width: 30%;
+            background: linear-gradient(135deg, #88cdf6, #bce6ff,#2d82b5);
+            color: white;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 30px;
+            border: 5px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid white;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            margin-right: 10px;
+            font-size: 18px;
+            width: 20px;
+        }
+        
+        .skills-list, .language-list {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        
+        .skills-list li, .language-list li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skills-list li:before, .language-list li:before {
+            content: "•";
+            margin-right: 10px;
+        }
+        
+        /* Main content styles */
+        .main-content {
+            width: 70%;
+            padding: 40px;
+            background-color: white;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        .name {
+            font-size: 48px;
+            font-weight: 500;
+            color: #14374a;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+        
+        .title {
+            font-size: 24px;
+            color: #555;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+        
+        .divider {
+            width: 80px;
+            height: 4px;
+            background-color: #14374a;
+            margin-bottom: 30px;
+        }
+        
+        .main-section-title {
+            font-size: 24px;
+            color: #14374a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 40px 0 20px;
+            border-bottom: 2px solid #14374a;
+            padding-bottom: 10px;
+        }
+        
+        .profile-text {
+            color: #555;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .experience-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .experience-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background-color: #14374a;
+            border-radius: 50%;
+        }
+        
+        .experience-item:after {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 26px;
+            width: 2px;
+            height: calc(100% - 18px);
+            background-color: #14374a;
+        }
+        
+        .experience-item:last-child:after {
+            display: none;
+        }
+        
+        .job-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: #14374a;
+            margin-bottom: 5px;
+        }
+        
+        .company {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .date {
+            position: absolute;
+            right: 0;
+            top: 0;
+            color: #777;
+        }
+        
+        .job-description {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        
+        .job-description li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .job-description li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+        
+        .education-item {
+            margin-bottom: 20px;
+        }
+        
+        .university {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .degree {
+            margin-bottom: 5px;
+        }
+        
+        .references {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .reference-item {
+            width: 48%;
+            margin-bottom: 20px;
+        }
+        
+        .reference-name {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .reference-position {
+            margin-bottom: 5px;
+        }
+        
+        .reference-contact {
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Navigation styles */
+        .navbar {
+            background-color: #14374a;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .nav-links li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s;
+        }
+
+        .nav-links li a:hover:after {
+            width: 100%;
+        }
+
+        /* Contact form page styles */
+        .contact-page {
+            display: none;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            padding: 60px 20px;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .contact-header {
+            background-color: #14374a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .contact-header p {
+            opacity: 0.8;
+        }
+
+        .contact-form {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #14374a;
+            outline: none;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .form-group .error {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .submit-btn {
+            background-color: #14374a;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d5170;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h3 {
+            color: #14374a;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .modal-btn {
+            background-color: #14374a;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                min-height: auto;
+            }
+            
+            .main-content {
+                width: 100%;
+            }
+            
+            .date {
+                position: static;
+                margin-bottom: 10px;
+            }
+            
+            .references {
+                flex-direction: column;
+            }
+            
+            .reference-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#" id="resume-link">Resume</a></li>
+            <li><a href="#" id="contact-link">Contact Me</a></li>
+        </ul>
+    </nav>
+
+    <!-- Resume Page -->
+    <div id="resume-page">
+        <div class="container">
+            <!-- Sidebar Section -->
+            <div class="sidebar">
+                <div class="profile-image">
+                    <img id="profile-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&s" alt="">
+                </div>
+                
+                <div class="contact-section">
+                    <h2 class="section-title">Contact</h2>
+                    <div class="contact-item">
+                        <i>📞</i>
+                        <span>+123-456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>✉️</i>
+                        <span>minhnguyen@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>📍</i>
+                        <span>Ha Noi</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>🌐</i>
+                        <span>www.minh25.com</span>
+                    </div>
+                </div>
+                
+                <div class="education-section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="education-item">
+                        <div class="university">2022 - 2027</div>
+                        <div class="degree">Posts and Telecommunications Institute of Technology (PTIT)</div>
+                        <ul class="skills-list">
+                            <li>Information Technology</li>
+                        </ul>
+                    </div>
+                
+                </div>
+                
+                <div class="skills-section">
+                    <h2 class="section-title">Skills</h2>
+                    <ul class="skills-list">
+                        <li>Project Management</li>
+                        <li>Teamwork</li>
+                        <li>Time Management</li>
+                        <li>Effective Communication</li>
+                        <li>Critical Thinking</li>
+                    </ul>
+                </div>
+                
+                <div class="languages-section">
+                    <h2 class="section-title">Languages</h2>
+                    <ul class="language-list">
+                        <li>English (Fluent)</li>
+                        <li>Vietnamese (Fluent)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Main Content Section -->
+            <div class="main-content">
+                <div class="header">
+                    <h1 class="name">Nguyễn Đình Minh</h1>
+                    <h2 class="title">Full Stack Developer</h2>
+                    <div class="divider"></div>
+                </div>
+                
+                <div class="profile-section">
+                    <h2 class="main-section-title">Profile</h2>
+                    <p class="profile-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis 
+                        nostrud exercitation. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad 
+                        minim veniam quis nostrud exercitation. Ut enim ad minim veniam quis nostrud 
+                        exercitation.
+                    </p>
+                </div>
+                
+                <div class="experience-section">
+                    <h2 class="main-section-title">Work Experience</h2>
+                    
+                    <div class="experience-item">
+                        <h3 class="job-title">Fullstack Developer</h3>
+                        <div class="company">Company ABC</div>
+                        <div class="date">2030 - PRESENT</div>
+                        <ul class="job-description">
+                            <li>Design, develop, and maintain scalable web applications using modern frontend and backend technologies.</li>
+                            <li>Collaborate with cross-functional teams to define, design, and ship new features efficiently.</li>
+                            <li>Optimize application performance and ensure high availability and security.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h3 class="job-title">Studio Codewave</h3>
+                        <div class="company">Fullstack Developer</div>
+                        <div class="date">2025 - 2029</div>
+                        <ul class="job-description">
+                            <li>Developed responsive web applications with a strong emphasis on user experience.</li>
+                            <li>Worked closely with designers and product managers to bring ideas to life.</li>
+                            <li>Ensured seamless integration between frontend and backend services.</li>
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="references-section">
+                    <h2 class="main-section-title">Reference</h2>
+                    <div class="references">
+                        <div class="reference-item">
+                            <div class="reference-contact">
+                                <div>Phone: 123-456-7890</div>
+                                <div>Email: minh25@gmail.com</div>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="contact-page">
+        <div class="contact-container">
+            <div class="contact-header">
+                <h2>Get In Touch</h2>
+                <p>Have a question or want to work together? Feel free to send me a message!</p>
+            </div>
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name">
+                        <div class="error" id="name-error">Please enter your name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address">
+                        <div class="error" id="email-error">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                        <div class="error" id="subject-error">Please enter a subject</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your message here..."></textarea>
+                        <div class="error" id="message-error">Please enter your message</div>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h3>Message Sent!</h3>
+            <p>Thank you for contacting me. I'll get back to you as soon as possible.</p>
+            <button class="modal-btn" id="modal-close-btn">Close</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation functionality
+            const resumePage = document.getElementById('resume-page');
+            const contactPage = document.getElementById('contact-page');
+            const resumeLink = document.getElementById('resume-link');
+            const contactLink = document.getElementById('contact-link');
+            
+            resumeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                resumePage.style.display = 'block';
+                contactPage.style.display = 'none';
+            });
+            
+            contactLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                resumePage.style.display = 'none';
+                contactPage.style.display = 'block';
+            });
+            
+            // Image upload functionality
+            const profileImg = document.getElementById('profile-img');
+            
+            profileImg.addEventListener('click', function() {
+                const fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.accept = 'image/*';
+                
+                fileInput.addEventListener('change', function(e) {
+                    if (e.target.files && e.target.files[0]) {
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(event) {
+                            profileImg.src = event.target.result;
+                        }
+                        
+                        reader.readAsDataURL(e.target.files[0]);
+                    }
+                });
+                
+                fileInput.click();
+            });
+            
+            // Contact form validation
+            const contactForm = document.getElementById('contact-form');
+            const successModal = document.getElementById('success-modal');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset previous error messages
+                const errorElements = document.querySelectorAll('.error');
+                errorElements.forEach(element => {
+                    element.style.display = 'none';
+                });
+                
+                // Get form values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const subject = document.getElementById('subject').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                // Validate form
+                let isValid = true;
+                
+                if (name === '') {
+                    document.getElementById('name-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (email === '') {
+                    document.getElementById('email-error').textContent = 'Please enter your email address';
+                    document.getElementById('email-error').style.display = 'block';
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    document.getElementById('email-error').textContent = 'Please enter a valid email address';
+                    document.getElementById('email-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (subject === '') {
+                    document.getElementById('subject-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                if (message === '') {
+                    document.getElementById('message-error').style.display = 'block';
+                    isValid = false;
+                }
+                
+                // If valid, simulate sending the message
+                if (isValid) {
+                    // Simulate sending message (this would be replaced with actual API call)
+                    setTimeout(function() {
+                        // Show success modal
+                        successModal.style.display = 'flex';
+                        
+                        // Reset form
+                        contactForm.reset();
+                    }, 500);
+                }
+            });
+            
+            // Email validation function
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // Close modal button
+            modalCloseBtn.addEventListener('click', function() {
+                successModal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === successModal) {
+                    successModal.style.display = 'none';
+                }
+            });
+            
+            // Optional: Make sections editable
+            function makeEditable() {
+                const editableElements = document.querySelectorAll('.name, .title, .profile-text, .job-title, .company, .job-description li, .university, .degree, .skills-list li, .language-list li, .reference-name, .reference-position, .reference-contact div');
+                
+                editableElements.forEach(element => {
+                    element.contentEditable = true;
+                    element.addEventListener('focus', function() {
+                        element.style.background = '#f5f5f5';
+                    });
+                    element.addEventListener('blur', function() {
+                        element.style.background = 'transparent';
+                    });
+                });
+            }
+            
+            // Uncomment to enable editing
+            // makeEditable();
+        });
+    </script>
+</body>
+</html>
